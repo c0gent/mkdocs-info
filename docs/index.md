@@ -1,17 +1,32 @@
-# Welcome to MkDocs
+## Initializing an [MkDocs](https://www.mkdocs.org/) Repository
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+These instructions assume a linux-based environment but should(?) work fine
+elsewhere. MkDocs should already be
+[installed](https://www.mkdocs.org/#installation).
 
-## Commands
+Our project will be named `my-mkdocs-project`. Rename as needed.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+### Getting Set Up
 
-## Project layout
+* Create a new github repository:
+    * Default settings
+        * Don't add a license, readme, etc.
+        * Don't follow any of the github setup instructions provided after
+          creation but, to save time, copy the repo url to your clipboard for
+          later.
+* Create a new MkDocs project:
+    * `mkdocs new my-mkdocs-project`
+    * `cd my-mkdocs-project`
+* Initialize git repo and push:
+    * `git init`
+    * `git add -A`
+    * `git commit -m "Init."`
+    * `git remote add origin <REPO_URL>` (paste the repo url)
+    * `git push -u origin master`
+* Build and Deploy:
+    * `mkdocs gh-deploy`
+        * This will automatically create a `gh-pages` branch, build the
+          documentation, commit, and push (pretty damn handy).
+        * Your documentation is now visible at
+          `https://<USER>.github.io/<REPO>)`.
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
