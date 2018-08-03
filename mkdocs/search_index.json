@@ -2,48 +2,28 @@
     "docs": [
         {
             "location": "/",
-            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.",
+            "text": "Initializing an \nMkDocs\n Repository\n\n\nThese instructions assume a linux-based environment but should(?) work fine\nelsewhere. MkDocs should already be\n\ninstalled\n.\n\n\nOur project will be named \nmy-mkdocs-project\n. Rename as needed.\n\n\nGetting Set Up\n\n\n\n\nCreate a new github repository:\n\n\nDefault settings\n\n\nDon't add a license, readme, etc.\n\n\nDon't follow any of the github setup instructions provided after\n  creation but, to save time, copy the repo url to your clipboard for\n  later.\n\n\n\n\n\n\n\n\n\n\nCreate a new MkDocs project:\n\n\nmkdocs new my-mkdocs-project\n\n\ncd my-mkdocs-project\n\n\n\n\n\n\nInitialize git repo and push:\n\n\ngit init\n\n\ngit add -A\n\n\ngit commit -m \"Init.\"\n\n\ngit remote add origin <REPO_URL>\n (paste the repo url)\n\n\ngit push -u origin master\n\n\n\n\n\n\nBuild and Deploy:\n\n\nmkdocs gh-deploy\n\n\nThis will automatically create a \ngh-pages\n branch, build the\n  documentation, commit, and push (pretty damn handy).\n\n\nYour documentation is now visible at\n  \nhttps://<USER>.github.io/<REPO>)\n.",
             "title": "Home"
         },
         {
-            "location": "/#welcome-to-mkdocs",
-            "text": "For full documentation visit  mkdocs.org .",
-            "title": "Welcome to MkDocs"
+            "location": "/#initializing-an-mkdocs-repository",
+            "text": "These instructions assume a linux-based environment but should(?) work fine\nelsewhere. MkDocs should already be installed .  Our project will be named  my-mkdocs-project . Rename as needed.",
+            "title": "Initializing an MkDocs Repository"
         },
         {
-            "location": "/#commands",
-            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.",
-            "title": "Commands"
-        },
-        {
-            "location": "/#project-layout",
-            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.",
-            "title": "Project layout"
+            "location": "/#getting-set-up",
+            "text": "Create a new github repository:  Default settings  Don't add a license, readme, etc.  Don't follow any of the github setup instructions provided after\n  creation but, to save time, copy the repo url to your clipboard for\n  later.      Create a new MkDocs project:  mkdocs new my-mkdocs-project  cd my-mkdocs-project    Initialize git repo and push:  git init  git add -A  git commit -m \"Init.\"  git remote add origin <REPO_URL>  (paste the repo url)  git push -u origin master    Build and Deploy:  mkdocs gh-deploy  This will automatically create a  gh-pages  branch, build the\n  documentation, commit, and push (pretty damn handy).  Your documentation is now visible at\n   https://<USER>.github.io/<REPO>) .",
+            "title": "Getting Set Up"
         },
         {
             "location": "/about/",
-            "text": "Sanctis coma proles ambit aestuque in quotiensque\n\n\nDescendunt pulsatus et polis repetenda cum utrum\n\n\nLorem markdownum tangi esse sic sidereis bracchia sine partim gauderet undae.\nSubmisit vulgusque rexerat causa? Spectes oris possim nec retro colla curis, et\ninsuper funale ignotas. Pietas victus, malo misso excusantia terga, tepidi remos\nest summam atque.\n\n\n\n\nHos rapuit vulnerat os coronat silentum caesa \ndolorque iugulum\nPriamides\n videri poteris fatidicamque ille\ndivis hiemalibus, mihi tabuit acies. Igitur diluvio. Fac cunctos Ilios heu\nmembraque novitate positis, uni remis ardentis quoque. Litora caedisque\npostquam infelix arguis sudataque cunctos sucis; primis Pentheus: linquit\n\nrex prior\n, lacesse. Pectore a arcum tetigere, si in verum palmis, est?\n\n\n\n\nCentum enim a ambitae nunc\n\n\nDedit tergo patiente in, dira corpore fixa, nubibus nostro. Texit Nec Hiberis,\nmodo vestis. \nFore requieque meritis\n, vim. Agaue praestet fidesque Argis\nCyprio Circen.\n\n\n\n\nMea ortas conplevit credite credo dei fluet\n\n\nEt si aprorum terram reserabo inquit\n\n\nHaec membra exstinguere sues\n\n\nQuartus quis Aeolidis Minervaetransformabantur\n\n\n\n\nMihi caede vita ille aristas conceperat\n\n\nCasusque nec ignes tulit, et inde tum \nqui\n deus crescitque tandem patet\nlactis sperantemque luctantiaque Poemenis. Silicem male abditus toto, satus\nocculuere corpora manu vidimus fovebat. \nTum\n pars falsa: iam est. Simul\n\nadsensere idque\n, incerta, choro \nAiax qua montibus\n fata: res modo.\n\n\n\n\nVeniam gloria Dianae fallere alma\n\n\nQuam est\n\n\nMota bella unde nam\n\n\nEst nec temptat aere moliturque aether\n\n\n\n\nNuminis verti: erat flecti querella, Iapygiam: nobis sonuit languere setius ab\nviam pervenit si. Fatemur et avorum qua fugis ossibus contendere si portas\nvisaque vivit. Campis Phoebo parat; pertimuit petens verba signaque; quaque\ncaput cavas natus opus novitate aurea circumlitus domos ullas, natas.",
+            "text": "About\n\n\nThere really isn't much to say about this site. Not much at all.",
             "title": "About"
         },
         {
-            "location": "/about/#sanctis-coma-proles-ambit-aestuque-in-quotiensque",
-            "text": "",
-            "title": "Sanctis coma proles ambit aestuque in quotiensque"
-        },
-        {
-            "location": "/about/#descendunt-pulsatus-et-polis-repetenda-cum-utrum",
-            "text": "Lorem markdownum tangi esse sic sidereis bracchia sine partim gauderet undae.\nSubmisit vulgusque rexerat causa? Spectes oris possim nec retro colla curis, et\ninsuper funale ignotas. Pietas victus, malo misso excusantia terga, tepidi remos\nest summam atque.   Hos rapuit vulnerat os coronat silentum caesa  dolorque iugulum\nPriamides  videri poteris fatidicamque ille\ndivis hiemalibus, mihi tabuit acies. Igitur diluvio. Fac cunctos Ilios heu\nmembraque novitate positis, uni remis ardentis quoque. Litora caedisque\npostquam infelix arguis sudataque cunctos sucis; primis Pentheus: linquit rex prior , lacesse. Pectore a arcum tetigere, si in verum palmis, est?",
-            "title": "Descendunt pulsatus et polis repetenda cum utrum"
-        },
-        {
-            "location": "/about/#centum-enim-a-ambitae-nunc",
-            "text": "Dedit tergo patiente in, dira corpore fixa, nubibus nostro. Texit Nec Hiberis,\nmodo vestis.  Fore requieque meritis , vim. Agaue praestet fidesque Argis\nCyprio Circen.   Mea ortas conplevit credite credo dei fluet  Et si aprorum terram reserabo inquit  Haec membra exstinguere sues  Quartus quis Aeolidis Minervaetransformabantur",
-            "title": "Centum enim a ambitae nunc"
-        },
-        {
-            "location": "/about/#mihi-caede-vita-ille-aristas-conceperat",
-            "text": "Casusque nec ignes tulit, et inde tum  qui  deus crescitque tandem patet\nlactis sperantemque luctantiaque Poemenis. Silicem male abditus toto, satus\nocculuere corpora manu vidimus fovebat.  Tum  pars falsa: iam est. Simul adsensere idque , incerta, choro  Aiax qua montibus  fata: res modo.   Veniam gloria Dianae fallere alma  Quam est  Mota bella unde nam  Est nec temptat aere moliturque aether   Numinis verti: erat flecti querella, Iapygiam: nobis sonuit languere setius ab\nviam pervenit si. Fatemur et avorum qua fugis ossibus contendere si portas\nvisaque vivit. Campis Phoebo parat; pertimuit petens verba signaque; quaque\ncaput cavas natus opus novitate aurea circumlitus domos ullas, natas.",
-            "title": "Mihi caede vita ille aristas conceperat"
+            "location": "/about/#about",
+            "text": "There really isn't much to say about this site. Not much at all.",
+            "title": "About"
         }
     ]
 }

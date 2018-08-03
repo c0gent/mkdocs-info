@@ -77,28 +77,53 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#welcome-to-mkdocs">Welcome to MkDocs</a></li>
-            <li><a href="#commands">Commands</a></li>
-            <li><a href="#project-layout">Project layout</a></li>
+        <li class="main active"><a href="#initializing-an-mkdocs-repository">Initializing an MkDocs Repository</a></li>
+            <li><a href="#getting-set-up">Getting Set Up</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="http://mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
+<h2 id="initializing-an-mkdocs-repository">Initializing an <a href="https://www.mkdocs.org/">MkDocs</a> Repository</h2>
+<p>These instructions assume a linux-based environment but should(?) work fine
+elsewhere. MkDocs should already be
+<a href="https://www.mkdocs.org/#installation">installed</a>.</p>
+<p>Our project will be named <code>my-mkdocs-project</code>. Rename as needed.</p>
+<h3 id="getting-set-up">Getting Set Up</h3>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs help</code> - Print this help message.</li>
+<li>Create a new github repository:<ul>
+<li>Default settings<ul>
+<li>Don't add a license, readme, etc.</li>
+<li>Don't follow any of the github setup instructions provided after
+  creation but, to save time, copy the repo url to your clipboard for
+  later.</li>
 </ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre></div>
+</li>
+</ul>
+</li>
+<li>Create a new MkDocs project:<ul>
+<li><code>mkdocs new my-mkdocs-project</code></li>
+<li><code>cd my-mkdocs-project</code></li>
+</ul>
+</li>
+<li>Initialize git repo and push:<ul>
+<li><code>git init</code></li>
+<li><code>git add -A</code></li>
+<li><code>git commit -m "Init."</code></li>
+<li><code>git remote add origin &lt;REPO_URL&gt;</code> (paste the repo url)</li>
+<li><code>git push -u origin master</code></li>
+</ul>
+</li>
+<li>Build and Deploy:<ul>
+<li><code>mkdocs gh-deploy</code><ul>
+<li>This will automatically create a <code>gh-pages</code> branch, build the
+  documentation, commit, and push (pretty damn handy).</li>
+<li>Your documentation is now visible at
+  <code>https://&lt;USER&gt;.github.io/&lt;REPO&gt;)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
@@ -137,5 +162,5 @@ docs/
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2018-08-03 03:48:48
+Build Date UTC : 2018-08-03 04:01:03
 -->
