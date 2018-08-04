@@ -73,7 +73,6 @@ env:
 language: python
 before_script:
 - pip install mkdocs
-- pip install MarkdownHighlight
 script:
 - << PASTE OPENSSL DECRYPTION COMMAND HERE >>
 - chmod 600 deploy-key
