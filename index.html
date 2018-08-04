@@ -180,8 +180,9 @@ account instead, replace occurances of <code>--pro</code> with <code>--org</code
 </li>
 <li>
 <p>Create a <code>.travis.yml</code> in the repo root with the following contents:</p>
-<p><code>yaml
-env:
+</li>
+</ul>
+<pre><code class="yaml">env:
 - - global
   - - GIT_NAME: my-mkdocs-project
     - GIT_EMAIL: your_email@example.com
@@ -195,14 +196,16 @@ script:
 - chmod 600 deploy-key
 - eval `ssh-agent -s`
 - ssh-add deploy-key
-- git config user.name "Automatic Publish"
+- git config user.name &quot;Automatic Publish&quot;
 - git config user.email $COMMIT_AUTHOR_EMAIL
-- git remote add gh-token "${GH_REF}";
+- git remote add gh-token &quot;${GH_REF}&quot;;
 - git fetch gh-token &amp;&amp; git fetch gh-token gh-pages:gh-pages;
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; PYTHONPATH=src/
+- if [ &quot;${TRAVIS_PULL_REQUEST}&quot; = &quot;false&quot; ]; then echo &quot;Pushing to github&quot;; PYTHONPATH=src/
   mkdocs gh-deploy -v --clean --remote-name gh-token; git push gh-token gh-pages;
-  fi;</code></p>
-</li>
+  fi;
+</code></pre>
+
+<ul>
 <li>
 <p>Paste <strong>your repo url</strong> (from before) and the <strong>openssl decryption command</strong>
   where noted (remove brackets <code>&lt;&lt;</code>, <code>&gt;&gt;</code>). Change the <code>GIT_NAME</code> as
@@ -306,5 +309,5 @@ script:
 
 <!--
 MkDocs version : 1.0
-Build Date UTC : 2018-08-04 18:37:33
+Build Date UTC : 2018-08-04 18:39:59
 -->
