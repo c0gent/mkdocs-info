@@ -135,14 +135,18 @@ CLI</a> is installed. Ensure
 you are logged in <code>travis login --pro</code>. If you want to use a <code>travis-ci.org</code>
 account instead, replace occurances of <code>--pro</code> with <code>--org</code>.</p>
 <ul>
-<li><code>cd {...}/my-mkdocs-project</code></li>
-<li>Create a new SSH deploy key:<ul>
+<li>
+<p><code>cd {...}/my-mkdocs-project</code></p>
+</li>
+<li>
+<p>Create a new SSH deploy key:</p>
+<ul>
 <li><em>Do not use an existing key.</em></li>
 <li><em>Do not add this key to your personal github.com account (we will be
   adding it to the repository only).</em></li>
 <li>Ensure git will not push they new key to repo:<ul>
 <li><code>echo "deploy-key" &gt;&gt; .gitignore</code>.<ul>
-<li>We'll also delete or move the key after encrypting.</li>
+<li>We will also delete or move the key after encrypting.</li>
 </ul>
 </li>
 </ul>
@@ -174,9 +178,10 @@ account instead, replace occurances of <code>--pro</code> with <code>--org</code
 </li>
 </ul>
 </li>
-<li>Create <code>.travis.yml</code> with the following contents.</li>
-</ul>
-<pre><code class="yaml">env:
+<li>
+<p>Create a <code>.travis.yml</code> in the repo root with the following contents:</p>
+<p><code>yaml
+env:
 - - global
   - - GIT_NAME: my-mkdocs-project
     - GIT_EMAIL: your_email@example.com
@@ -190,25 +195,34 @@ script:
 - chmod 600 deploy-key
 - eval `ssh-agent -s`
 - ssh-add deploy-key
-- git config user.name &quot;Automatic Publish&quot;
+- git config user.name "Automatic Publish"
 - git config user.email $COMMIT_AUTHOR_EMAIL
-- git remote add gh-token &quot;${GH_REF}&quot;;
+- git remote add gh-token "${GH_REF}";
 - git fetch gh-token &amp;&amp; git fetch gh-token gh-pages:gh-pages;
-- if [ &quot;${TRAVIS_PULL_REQUEST}&quot; = &quot;false&quot; ]; then echo &quot;Pushing to github&quot;; PYTHONPATH=src/
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; PYTHONPATH=src/
   mkdocs gh-deploy -v --clean --remote-name gh-token; git push gh-token gh-pages;
-  fi;
-</code></pre>
-
-<pre><code>* Paste **your repo url** (from before) and the **openssl decryption
-  command** where noted (remove brackets `&lt;&lt;`, `&gt;&gt;`). Leave the rest
-  alone.
-</code></pre>
-<ul>
-<li>Delete or move the deploy-key file (to <code>$HOME/.keys</code> for example).</li>
-<li><code>git</code> add, commit, and push.</li>
-<li>Go to your <code>travis-ci.com</code> or <code>.org</code> dashboard and check the status of the
+  fi;</code></p>
+</li>
+<li>
+<p>Paste <strong>your repo url</strong> (from before) and the <strong>openssl decryption command</strong>
+  where noted (remove brackets <code>&lt;&lt;</code>, <code>&gt;&gt;</code>). Change the <code>GIT_NAME</code> as
+  appropriate. The <code>GIT_EMAIL</code> doesn't matter but you can use your own.</p>
+</li>
+<li>
+<p>Delete or move the deploy-key file (to <code>$HOME/.keys</code> for example).</p>
+</li>
+<li>
+<p><code>git add -A</code>, commit, and push.</p>
+</li>
+<li>
+<p>Go to your <code>travis-ci.com</code> or <code>.org</code> dashboard and check the status of the
   build. If you run into problems, please <a href="https://github.com/c0gent/mkdocs-test/issues">file an issue
-  here</a>!</li>
+  here</a>!</p>
+</li>
+<li>
+<p>Make a change to your docs (<code>docs/index.md</code> for example), push the changes,
+  and ensure that they appear on <code>https://&lt;USER&gt;.github.io/&lt;REPO&gt;</code>.</p>
+</li>
 </ul></div>
         </div>
 
@@ -292,5 +306,5 @@ script:
 
 <!--
 MkDocs version : 1.0
-Build Date UTC : 2018-08-04 18:35:26
+Build Date UTC : 2018-08-04 18:37:33
 -->
