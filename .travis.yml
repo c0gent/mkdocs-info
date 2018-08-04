@@ -1,8 +1,8 @@
 env:
 - - global
-  - - GIT_NAME: mkdocs-test
+  - - GIT_NAME: mkdocs-info
     - GIT_EMAIL: $COMMIT_AUTHOR_EMAIL
-    - GH_REF: git@github.com:c0gent/mkdocs-test.git
+    - GH_REF: git@github.com:c0gent/mkdocs-info.git
 language: python
 before_script:
 - pip install mkdocs

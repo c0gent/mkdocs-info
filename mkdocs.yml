@@ -1,4 +1,4 @@
-site_name: mkdocs-test
+site_name: mkdocs-info
 pages:
     - Home: index.md
     - About: about.md
