@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="img/favicon.ico">
-        <title>mkdocs-test</title>
+        <title>mkdocs-info</title>
         <link href="css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">mkdocs-test</a>
+                    <a class="navbar-brand" href=".">mkdocs-info</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -80,14 +80,15 @@
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#initializing-an-mkdocs-repository">Initializing an MkDocs Repository</a></li>
             <li><a href="#getting-set-up">Getting Set Up</a></li>
+            <li><a href="#travis">Travis</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
 <h2 id="initializing-an-mkdocs-repository">Initializing an <a href="https://www.mkdocs.org/">MkDocs</a> Repository</h2>
 <p>These instructions assume a linux-based environment but should(?) work fine
-elsewhere. MkDocs should already be
-<a href="https://www.mkdocs.org/#installation">installed</a>.</p>
+elsewhere. <a href="https://git-scm.com/">Git</a> and
+<a href="https://www.mkdocs.org/#installation">MkDocs</a> should be installed.</p>
 <p>Our project will be named <code>my-mkdocs-project</code>. Rename as needed.</p>
 <h3 id="getting-set-up">Getting Set Up</h3>
 <ul>
@@ -104,6 +105,7 @@ elsewhere. MkDocs should already be
 <li>Create a new MkDocs project:<ul>
 <li><code>mkdocs new my-mkdocs-project</code></li>
 <li><code>cd my-mkdocs-project</code></li>
+<li>If you'll be building locally for testing: <code>echo "site/" &gt;&gt; .gitignore</code></li>
 </ul>
 </li>
 <li>Initialize git repo and push:<ul>
@@ -124,6 +126,89 @@ elsewhere. MkDocs should already be
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="travis">Travis</h3>
+<p>Ensure you have a <code>travis-ci.com</code> account, that it is
+<a href="https://docs.travis-ci.com/user/getting-started/">activated</a> for the
+<code>my-mkdocs-project</code> repo, and that the <a href="https://github.com/travis-ci/travis.rb#installation">Travis
+CLI</a> is installed. Ensure
+you are logged in <code>travis login --pro</code>. If you want to use a <code>travis-ci.org</code>
+account instead, replace occurances of <code>--pro</code> with <code>--org</code>.</p>
+<ul>
+<li><code>cd {...}/my-mkdocs-project</code></li>
+<li>Create a new SSH deploy key:<ul>
+<li><em>Do not use an existing key.</em></li>
+<li><em>Do not add this key to your personal github.com account (we will be
+  adding it to the repository only).</em></li>
+<li>Ensure git will not push they new key to repo:<ul>
+<li><code>echo "deploy-key" &gt;&gt; .gitignore</code>.<ul>
+<li>We'll also delete or move the key after encrypting.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Generate key:<ul>
+<li><code>ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f deploy-key</code>.<ul>
+<li>The e-mail address doesn't matter, it can be yours if you want.</li>
+</ul>
+</li>
+<li>Do <strong>not</strong> enter a password when prompted. Leave it blank. We will
+  be encrypting the key ourselves.</li>
+</ul>
+</li>
+<li>Encrypt key:<ul>
+<li><code>travis encrypt-file deploy-key --pro</code> (or <code>--org</code>).</li>
+<li>Copy the full openssl command listed.</li>
+</ul>
+</li>
+<li>Add key to the repository deploy keys:<ul>
+<li>Repository 'Settings' tab -&gt; 'Deploy keys' -&gt; 'Add deploy key'.</li>
+<li>Use <code>Travis Deploy</code> or some such title.</li>
+<li>Paste the contents of <code>deploy-key.pub</code> in the 'Key' box.</li>
+<li>Check the “Allow write access”. The deploy key will be used to
+  authenticate the travis-ci build in order to push commits in the
+  same way it automatically authenticates you when using git from the
+  command line (when configured).</li>
+<li>Click 'Add Key'.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Create <code>.travis.yml</code> with the following contents.</li>
+</ul>
+<pre><code class="yaml">env:
+- - global
+  - - GIT_NAME: my-mkdocs-project
+    - GIT_EMAIL: your_email@example.com
+    - GH_REF: &lt;&lt; PASTE YOUR REPO URL HERE &gt;&gt;
+language: python
+before_script:
+- pip install mkdocs
+- pip install MarkdownHighlight
+script:
+- &lt;&lt; PASTE OPENSSL DECRYPTION COMMAND HERE &gt;&gt;
+- chmod 600 deploy-key
+- eval `ssh-agent -s`
+- ssh-add deploy-key
+- git config user.name &quot;Automatic Publish&quot;
+- git config user.email $COMMIT_AUTHOR_EMAIL
+- git remote add gh-token &quot;${GH_REF}&quot;;
+- git fetch gh-token &amp;&amp; git fetch gh-token gh-pages:gh-pages;
+- if [ &quot;${TRAVIS_PULL_REQUEST}&quot; = &quot;false&quot; ]; then echo &quot;Pushing to github&quot;; PYTHONPATH=src/
+  mkdocs gh-deploy -v --clean --remote-name gh-token; git push gh-token gh-pages;
+  fi;
+</code></pre>
+
+<pre><code>* Paste **your repo url** (from before) and the **openssl decryption
+  command** where noted (remove brackets `&lt;&lt;`, `&gt;&gt;`). Leave the rest
+  alone.
+</code></pre>
+<ul>
+<li>Delete or move the deploy-key file (to <code>$HOME/.keys</code> for example).</li>
+<li><code>git</code> add, commit, and push.</li>
+<li>Go to your <code>travis-ci.com</code> or <code>.org</code> dashboard and check the status of the
+  build. If you run into problems, please <a href="https://github.com/c0gent/mkdocs-test/issues">file an issue
+  here</a>!</li>
 </ul></div>
         </div>
 
@@ -207,5 +292,5 @@ elsewhere. MkDocs should already be
 
 <!--
 MkDocs version : 1.0
-Build Date UTC : 2018-08-04 17:20:18
+Build Date UTC : 2018-08-04 18:21:49
 -->
