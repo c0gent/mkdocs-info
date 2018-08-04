@@ -17,6 +17,7 @@ Our project will be named `my-mkdocs-project`. Rename as needed.
 * Create a new MkDocs project:
     * `mkdocs new my-mkdocs-project`
     * `cd my-mkdocs-project`
+    * If you'll be building locally for testing: `echo "site/" >> .gitignore`
 * Initialize git repo and push:
     * `git init`
     * `git add -A`
@@ -31,3 +32,9 @@ Our project will be named `my-mkdocs-project`. Rename as needed.
           `https://<USER>.github.io/<REPO>)`.
 
 
+### Travis
+
+Assumes you have a `travis-ci.com` account and that it is [activated for the
+`my-mkdocs-project` repo](https://docs.travis-ci.com/user/getting-started/).
+
+*

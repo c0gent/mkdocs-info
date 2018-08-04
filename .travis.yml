@@ -1,19 +1,21 @@
 env:
-  global:
-  - GIT_NAME: "mkdocs-test"
-  - GIT_EMAIL: nsan1129@gmail.com
-  - GH_REF: git@github.com:c0gent/mkdocs-test.git
+- - global
+  - - GIT_NAME: mkdocs-test
+    - GIT_EMAIL: $COMMIT_AUTHOR_EMAIL
+    - GH_REF: git@github.com:c0gent/mkdocs-test.git
 language: python
 before_script:
 - pip install mkdocs
-# - pip install MarkdownHighlight
+- pip install MarkdownHighlight
 script:
 - openssl aes-256-cbc -K $encrypted_9186e51e85a9_key -iv $encrypted_9186e51e85a9_iv -in deploy-key.enc -out deploy-key -d
 - chmod 600 deploy-key
 - eval `ssh-agent -s`
 - ssh-add deploy-key
 - git config user.name "Automatic Publish"
-- git config user.email "nsan1129@gmail.com"
+- git config user.email $COMMIT_AUTHOR_EMAIL
 - git remote add gh-token "${GH_REF}";
 - git fetch gh-token && git fetch gh-token gh-pages:gh-pages;
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; PYTHONPATH=src/ mkdocs gh-deploy -v --clean --remote-name gh-token; git push gh-token gh-pages; fi;
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; PYTHONPATH=src/
+  mkdocs gh-deploy -v --clean --remote-name gh-token; git push gh-token gh-pages;
+  fi;
