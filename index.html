@@ -139,12 +139,12 @@ account instead, replace occurances of <code>--pro</code> with <code>--org</code
 <p><code>cd {...}/my-mkdocs-project</code></p>
 </li>
 <li>
-<p>Create a new SSH deploy key:</p>
+<p>Create and encrypt a new SSH deploy key:</p>
 <ul>
 <li><em>Do not use an existing key.</em></li>
 <li><em>Do not add this key to your personal github.com account (we will be
   adding it to the repository only).</em></li>
-<li>Ensure git will not push they new key to repo:<ul>
+<li><strong>Ensure git will not push the secret key to repo</strong>:<ul>
 <li><code>echo "deploy-key" &gt;&gt; .gitignore</code>.<ul>
 <li>We will also delete or move the key after encrypting.</li>
 </ul>
@@ -153,7 +153,7 @@ account instead, replace occurances of <code>--pro</code> with <code>--org</code
 </li>
 <li>Generate key:<ul>
 <li><code>ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f deploy-key</code>.<ul>
-<li>The e-mail address doesn't matter, it can be yours if you want.</li>
+<li>The e-mail address doesn't matter; Use your own if you want.</li>
 </ul>
 </li>
 <li>Do <strong>not</strong> enter a password when prompted. Leave it blank. We will
@@ -162,18 +162,9 @@ account instead, replace occurances of <code>--pro</code> with <code>--org</code
 </li>
 <li>Encrypt key:<ul>
 <li><code>travis encrypt-file deploy-key --pro</code> (or <code>--org</code>).</li>
-<li>Copy the full openssl command listed.</li>
-</ul>
-</li>
-<li>Add key to the repository deploy keys:<ul>
-<li>Repository 'Settings' tab -&gt; 'Deploy keys' -&gt; 'Add deploy key'.</li>
-<li>Use <code>Travis Deploy</code> or some such title.</li>
-<li>Paste the contents of <code>deploy-key.pub</code> in the 'Key' box.</li>
-<li>Check the “Allow write access”. The deploy key will be used to
-  authenticate the travis-ci build in order to push commits in the
-  same way it automatically authenticates you when using git from the
-  command line (when configured).</li>
-<li>Click 'Add Key'.</li>
+<li>You should see the decryption command printed (example: <code>openssl
+  aes-256-cbc -K $encrypted_9186e51e85a9_key -iv
+  $encrypted_9186e51e85a9_iv -in deploy-key.enc -out deploy-key -d</code>).</li>
 </ul>
 </li>
 </ul>
@@ -209,7 +200,20 @@ script:
 <li>
 <p>Paste <strong>your repo url</strong> (from before) and the <strong>openssl decryption command</strong>
   where noted (remove brackets <code>&lt;&lt;</code>, <code>&gt;&gt;</code>). Change the <code>GIT_NAME</code> as
-  appropriate. The <code>GIT_EMAIL</code> doesn't matter but you can use your own.</p>
+  appropriate. The <code>GIT_EMAIL</code> doesn't matter; Use your own if you want.</p>
+</li>
+<li>
+<p>Add the deploy public key to the repository deploy keys:</p>
+<ul>
+<li>Repository 'Settings' tab -&gt; 'Deploy keys' -&gt; 'Add deploy key'.</li>
+<li>Use <code>Travis Deploy</code> or some such title.</li>
+<li>Paste the contents of <code>deploy-key.pub</code> into the 'Key' box.</li>
+<li>Check the “Allow write access”. The deploy key will be used to
+  authenticate the travis-ci build in order to push commits in the same
+  way it automatically authenticates you when using git from the command
+  line (when configured).</li>
+<li>Click 'Add Key'.</li>
+</ul>
 </li>
 <li>
 <p>Delete or move the <code>deploy-key</code> and <code>deploy-key.pub</code> files somewhere safe
@@ -310,5 +314,5 @@ script:
 
 <!--
 MkDocs version : 1.0
-Build Date UTC : 2018-08-04 19:09:27
+Build Date UTC : 2018-08-04 19:15:42
 -->
